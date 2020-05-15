@@ -15,25 +15,37 @@ public class AttributeManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Magic")
+        if (other.gameObject.tag == "Magic")
         {
             attributes |= MAGIC;
         }
-        if (other.gameObject.tag == "Intelligence")
+        else if (other.gameObject.tag == "Intelligence")
         {
             attributes |= INTELLIGENCE;
         }
-        if (other.gameObject.tag == "Charisma")
+        else if (other.gameObject.tag == "Charisma")
         {
             attributes |= CHARISMA;
         }
-        if (other.gameObject.tag == "Fly")
+        else if (other.gameObject.tag == "Fly")
         {
             attributes |= FLY;
         }
-        if (other.gameObject.tag == "Invisible")
+        else if (other.gameObject.tag == "Invisible")
         {
             attributes |= INVISIBLE;
+        }
+        else if (other.gameObject.tag == "AntiMagic")
+        {
+            attributes &= ~MAGIC;
+        }
+        else if (other.gameObject.tag == "Remove")
+        {
+            attributes &= ~(MAGIC | INTELLIGENCE | CHARISMA | FLY | INVISIBLE);
+        }
+        else if (other.gameObject.tag == "Add")
+        {
+            attributes |= (MAGIC | INTELLIGENCE | CHARISMA | FLY | INVISIBLE);
         }
     }
 

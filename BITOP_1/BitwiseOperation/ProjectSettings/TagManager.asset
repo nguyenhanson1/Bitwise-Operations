@@ -9,6 +9,7 @@ TagManager:
   - Charisma
   - Fly
   - Invisible
+  - AntiMagic
   layers:
   - Default
   - TransparentFX
