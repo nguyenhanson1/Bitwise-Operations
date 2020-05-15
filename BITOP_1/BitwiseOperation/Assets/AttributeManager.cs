@@ -3,52 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+
 public class AttributeManager : MonoBehaviour
 {
+    static public int BLUEKEY = 4;
+    static public int REDKEY = 2;
+    static public int GREENKEY = 1;
+
     public Text attributeDisplay;
-    public static int MAGIC = 16;
-    public static int INTELLIGENCE = 8;
-    public static int CHARISMA = 4;
-    public static int FLY = 2;
-    public static int INVISIBLE = 1;
-    int attributes = 0;
+    public int attributes = 0;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Magic")
+        if(other.gameObject.tag == "BLUE_KEY")
         {
-            attributes |= MAGIC;
+            attributes |= BLUEKEY;
+            Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag == "Intelligence")
+        else if (other.gameObject.tag == "RED_KEY")
         {
-            attributes |= INTELLIGENCE;
+            attributes |= REDKEY;
+            Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag == "Charisma")
+        else if (other.gameObject.tag == "GREEN_KEY")
         {
-            attributes |= CHARISMA;
+            attributes |= GREENKEY;
+            Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag == "Fly")
+        else if (other.gameObject.tag == "GOLD_KEY")
         {
-            attributes |= FLY;
-        }
-        else if (other.gameObject.tag == "Invisible")
-        {
-            attributes |= INVISIBLE;
-        }
-        else if (other.gameObject.tag == "AntiMagic")
-        {
-            attributes &= ~MAGIC;
-        }
-        else if (other.gameObject.tag == "Remove")
-        {
-            attributes &= ~(MAGIC | INTELLIGENCE | CHARISMA | FLY | INVISIBLE);
-        }
-        else if (other.gameObject.tag == "Add")
-        {
-            attributes |= (MAGIC | INTELLIGENCE | CHARISMA | FLY | INVISIBLE);
+            attributes |= (BLUEKEY | REDKEY | GREENKEY);
+            Destroy(other.gameObject);
         }
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +48,7 @@ public class AttributeManager : MonoBehaviour
     {
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(this.transform.position);
         attributeDisplay.transform.position = screenPoint + new Vector3(0,-50,0);
-        attributeDisplay.text = Convert.ToString(attributes, 2).PadLeft(8,'0');
+        attributeDisplay.text = Convert.ToString(attributes, 2).PadLeft(8, '0');
     }
        
 }

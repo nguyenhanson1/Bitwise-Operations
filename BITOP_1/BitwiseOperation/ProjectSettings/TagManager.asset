@@ -10,6 +10,8 @@ TagManager:
   - Fly
   - Invisible
   - AntiMagic
+  - Remove
+  - Add
   layers:
   - Default
   - TransparentFX
